@@ -1,0 +1,57 @@
+teleop_manager:
+  ros__parameters:
+    robot_name: ""
+    base_frame: base_link
+
+    command_topic: /teleop/command
+    status_topic: /teleop/status
+    validated_joint_velocity_topic: /teleop/validated/joint_velocity
+    validated_joint_position_topic: /teleop/validated/joint_position
+    validated_cartesian_twist_topic: /servo_node/delta_twist_cmds
+    validated_cartesian_pose_topic: /teleop/validated/cartesian_pose
+    set_control_mode_service: /teleop/set_control_mode
+    set_teleop_enable_service: /teleop/set_teleop_enable
+    reset_emergency_stop_service: /teleop/reset_emergency_stop
+
+    default_mode: cartesian_twist
+    allowed_modes:
+      - joint_position
+      - joint_velocity
+      - cartesian_pose
+      - cartesian_twist
+      - gripper
+
+    control_frequency: 50.0
+    command_timeout_s: 0.2
+    mode_switch_debounce_s: 0.25
+    transform_timeout_s: 0.05
+    require_enable: true
+
+    deadband: 0.0001
+    smoothing_alpha: 0.35
+
+    max_linear_velocity: 0.15
+    max_angular_velocity: 0.4
+    workspace_min: [-1.0, -1.0, 0.0]
+    workspace_max: [1.0, 1.0, 1.2]
+
+    joint_names:
+      - joint_1
+      - joint_2
+      - joint_3
+      - joint_4
+      - joint_5
+      - joint_6
+      - joint_7
+    min_joint_position: [-3.14, -2.6, -3.14, -2.8, -3.14, -2.8, -3.14]
+    max_joint_position: [3.14, 2.6, 3.14, 2.8, 3.14, 2.8, 3.14]
+    max_joint_velocity: [0.5, 0.5, 0.5, 0.5, 0.8, 0.8, 0.8]
+
+keyboard_servo:
+  ros__parameters:
+    command_topic: /teleop/command
+    robot_name: ""
+    frame_id: base_link
+    linear_step: 0.05
+    angular_step: 0.2
+    enable: true

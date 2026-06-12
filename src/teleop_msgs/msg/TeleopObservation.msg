@@ -1,0 +1,10 @@
+std_msgs/Header header
+
+string robot_name
+uint32 sequence_id
+
+sensor_msgs/JointState joint_state
+teleop_msgs/EndEffectorState end_effector_state
+teleop_msgs/GripperState gripper_state
+teleop_msgs/SensorState sensor_state
+teleop_msgs/RobotStatus robot_status
