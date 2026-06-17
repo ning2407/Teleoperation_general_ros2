@@ -29,6 +29,7 @@ setup(
     entry_points={
         'console_scripts': [
             'teleop_manager = teleop_core.teleop_manager:main',
+            'observation_publisher = teleop_core.observation_publisher:main',
             'keyboard_servo = teleop_hardware.keyboard_servo:main',
         ],
     },

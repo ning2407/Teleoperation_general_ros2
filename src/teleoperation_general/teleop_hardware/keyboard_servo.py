@@ -39,7 +39,7 @@ class KeyboardServoHardware(Node):
         self.declare_parameter("command_topic", "/teleop/command")
         self.declare_parameter("robot_name", "")
         self.declare_parameter("frame_id", "base_link")
-        self.declare_parameter("linear_step", 0.05)
+        self.declare_parameter("linear_step", 0.5)
         self.declare_parameter("angular_step", 0.2)
         self.declare_parameter("enable", True)
 

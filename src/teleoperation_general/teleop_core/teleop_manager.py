@@ -6,6 +6,7 @@ from typing import Callable
 
 from geometry_msgs.msg import PoseStamped, TwistStamped
 import rclpy
+from rclpy.executors import ExternalShutdownException
 from rclpy.node import Node
 from rclpy.parameter import Parameter
 from sensor_msgs.msg import JointState
@@ -414,9 +415,15 @@ def main(args: list[str] | None = None) -> None:
     node = TeleopManager()
     try:
         rclpy.spin(node)
+    except (KeyboardInterrupt, ExternalShutdownException):
+        pass
     finally:
-        node.destroy_node()
-        rclpy.shutdown()
+        try:
+            node.destroy_node()
+        except KeyboardInterrupt:
+            pass
+        if rclpy.ok():
+            rclpy.shutdown()
 
 
 if __name__ == "__main__":

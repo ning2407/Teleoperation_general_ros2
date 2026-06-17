@@ -11,6 +11,7 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description() -> LaunchDescription:
     config = LaunchConfiguration("config")
     start_keyboard = LaunchConfiguration("start_keyboard")
+    start_observation = LaunchConfiguration("start_observation")
 
     default_config = PathJoinSubstitution([
         FindPackageShare("teleoperation_general"),
@@ -28,6 +29,11 @@ def generate_launch_description() -> LaunchDescription:
             default_value="false",
             description="Start the keyboard hardware input node.",
         ),
+        DeclareLaunchArgument(
+            "start_observation",
+            default_value="true",
+            description="Start the unified observation publisher node.",
+        ),
         Node(
             package="teleoperation_general",
             executable="teleop_manager",
@@ -42,5 +48,13 @@ def generate_launch_description() -> LaunchDescription:
             output="screen",
             parameters=[config],
             condition=IfCondition(start_keyboard),
+        ),
+        Node(
+            package="teleoperation_general",
+            executable="observation_publisher",
+            name="observation_publisher",
+            output="screen",
+            parameters=[config],
+            condition=IfCondition(start_observation),
         ),
     ])
