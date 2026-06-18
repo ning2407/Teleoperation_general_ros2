@@ -52,9 +52,39 @@ keyboard_servo:
     command_topic: /teleop/command
     robot_name: ""
     frame_id: base_link
-    linear_step: 0.05
-    angular_step: 0.2
+    linear_step: 8.0
+    angular_step: 5.0
     enable: true
+    observation_topic: /teleop/observation
+    current_pose_timeout_s: 1.0
+    controller_manager_prefix: /controller_manager
+    trajectory_controller: joint_trajectory_controller
+    servo_controller: forward_position_controller
+    switch_controller_timeout_s: 2.0
+    auto_switch_for_home: true
+    return_to_servo_after_home: false
+    joint_state_topic: /joint_states
+    servo_command_topic: /forward_position_controller/commands
+    seed_servo_on_switch: true
+    servo_seed_publish_count: 5
+    servo_seed_publish_period_s: 0.05
+    manage_servo_node_on_switch: true
+    servo_node_prefix: /servo_node
+    home_trajectory_action: /joint_trajectory_controller/follow_joint_trajectory
+    home_joint_names:
+      - shoulder_pan_joint
+      - shoulder_lift_joint
+      - elbow_joint
+      - wrist_1_joint
+      - wrist_2_joint
+      - wrist_3_joint
+    home_joint_positions: [-1.57, -1.57, -1.57, -1.57, 1.57, 0.0]
+    home_duration_s: 3.0
+    # Optional fixed home pose in frame_id.
+    # home_position: [0.40, 0.00, 0.35]
+    # Use either quaternion xyzw or RPY radians. home_rpy takes priority if set.
+    home_orientation_xyzw: [0.0, 0.0, 0.0, 1.0]
+    # home_rpy: [0.0, 0.0, 0.0]
 
 observation_publisher:
   ros__parameters:

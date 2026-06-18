@@ -10,7 +10,6 @@ from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description() -> LaunchDescription:
     config = LaunchConfiguration("config")
-    start_keyboard = LaunchConfiguration("start_keyboard")
     start_observation = LaunchConfiguration("start_observation")
 
     default_config = PathJoinSubstitution([
@@ -25,11 +24,6 @@ def generate_launch_description() -> LaunchDescription:
             description="Path to teleop core YAML config.",
         ),
         DeclareLaunchArgument(
-            "start_keyboard",
-            default_value="false",
-            description="Start the keyboard hardware input node.",
-        ),
-        DeclareLaunchArgument(
             "start_observation",
             default_value="true",
             description="Start the unified observation publisher node.",
@@ -40,14 +34,6 @@ def generate_launch_description() -> LaunchDescription:
             name="teleop_manager",
             output="screen",
             parameters=[config],
-        ),
-        Node(
-            package="teleoperation_general",
-            executable="keyboard_servo",
-            name="keyboard_servo",
-            output="screen",
-            parameters=[config],
-            condition=IfCondition(start_keyboard),
         ),
         Node(
             package="teleoperation_general",
