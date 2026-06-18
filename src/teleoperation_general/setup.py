@@ -31,6 +31,8 @@ setup(
             'teleop_manager = teleop_core.teleop_manager:main',
             'observation_publisher = teleop_core.observation_publisher:main',
             'keyboard_servo = teleop_hardware.keyboard_servo:main',
+            'xbox_servo = teleop_hardware.xbox_servo:main',
+            'phone_imu_servo = teleop_hardware.phone_imu_servo:main',
         ],
     },
 )

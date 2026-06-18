@@ -86,6 +86,49 @@ keyboard_servo:
     home_orientation_xyzw: [0.0, 0.0, 0.0, 1.0]
     # home_rpy: [0.0, 0.0, 0.0]
 
+xbox_servo:
+  ros__parameters:
+    command_topic: /teleop/command
+    joy_topic: /joy
+    robot_name: ""
+    frame_id: base_link
+    enable: true
+    publish_rate: 50.0
+    deadband: 0.08
+    require_deadman: true
+    deadman_button: 4
+    stop_button: 1
+    axis_linear_x: 1
+    axis_linear_y: 0
+    axis_angular_x: 4
+    axis_angular_y: 3
+    axis_linear_z_positive: 5
+    axis_linear_z_negative: 2
+    button_yaw_positive: 3
+    button_yaw_negative: 0
+    linear_scale: 0.10
+    angular_scale: 0.30
+    trigger_is_released_at_one: true
+
+phone_imu_servo:
+  ros__parameters:
+    command_topic: /teleop/command
+    robot_name: ""
+    frame_id: base_link
+    enable: true
+    protocol: tcp
+    listen_host: 0.0.0.0
+    listen_port: 9000
+    socket_timeout_s: 0.2
+    angular_scale: 0.8
+    linear_scale: 0.05
+    deadband: 0.02
+    use_orientation_for_angular: true
+    use_tilt_for_linear: false
+    invert_roll: false
+    invert_pitch: false
+    invert_yaw: false
+
 observation_publisher:
   ros__parameters:
     robot_name: ""
